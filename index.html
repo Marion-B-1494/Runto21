@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#173d2d">
+<link rel="manifest" href="manifest.json">
+<title>RUN TO 21.1</title>
+<style>
+:root{--bg:#f2f4ef;--ink:#142019;--muted:#728078;--green:#173d2d;--lime:#cce86a;--card:#fff;--line:#dce3dc;--soft:#e9f1e8;--orange:#f2a65a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}main{max-width:760px;margin:auto;padding:16px 14px 42px}
+.hero{background:var(--green);color:#fff;border-radius:30px;padding:22px;position:relative;overflow:hidden}.hero:after{content:"21.1";position:absolute;right:-8px;bottom:-22px;font-size:100px;font-weight:900;opacity:.06}.eyebrow{font-size:11px;letter-spacing:1.7px;text-transform:uppercase;opacity:.7}.hero h1{font-size:34px;line-height:1;margin:7px 0}.hero p{margin:8px 0;color:#d7e3db;font-size:14px}.heroRow{display:flex;align-items:center;gap:20px;margin-top:20px}.ring{width:112px;height:112px;border-radius:50%;background:conic-gradient(var(--lime) 0deg,var(--lime) var(--deg),rgba(255,255,255,.12) var(--deg));display:grid;place-items:center;flex:none}.ring:before{content:"";width:82px;height:82px;background:var(--green);border-radius:50%;position:absolute}.ring b{position:relative;font-size:23px}.ring small{position:relative;font-size:10px;display:block;text-align:center;opacity:.7}.heroStats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;flex:1}.mini{background:rgba(255,255,255,.09);border-radius:15px;padding:12px}.mini b{display:block;font-size:22px}.mini span{font-size:11px;color:#cbd9d0}
+.nav{display:flex;gap:7px;overflow:auto;padding:13px 0}.nav button{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:13px;padding:10px 13px;font-weight:800}.nav button.active{background:var(--ink);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:21px;padding:16px;margin-bottom:12px}.head{display:flex;justify-content:space-between;align-items:center;gap:10px}.head h2{font-size:18px;margin:0}.pill{font-size:11px;background:var(--soft);padding:7px 9px;border-radius:99px;font-weight:800}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:14px}.day{min-width:0;background:#f7f8f6;border:1px solid var(--line);border-radius:13px;padding:8px 5px;text-align:center}.dayName{font-size:10px;color:var(--muted)}.dayNum{font-weight:900;margin:4px 0}.dot{height:7px;width:7px;border-radius:50%;background:#cbd2cc;margin:6px auto}.day.run .dot{background:var(--green)}.day.done{background:var(--soft);border-color:#bcd2bf}.day.done .dot{background:var(--lime)}.day.done .dayNum{color:var(--green)}
+.session{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;border-top:1px solid var(--line);padding:13px 0}.session:first-child{border-top:0}.ico{width:44px;height:44px;border-radius:14px;background:var(--soft);display:grid;place-items:center;font-size:20px}.session h3{margin:0 0 3px;font-size:14px}.session p{margin:0;color:var(--muted);font-size:12px}.check{border:0;background:var(--green);color:#fff;border-radius:11px;padding:9px 11px;font-weight:800}.done .ico{background:var(--green);color:#fff}.done h3{text-decoration:line-through;color:#6e786f}
+.quote{background:#142019;color:#fff;border-radius:20px;padding:17px;margin:12px 0}.quote b{font-size:16px}.quote small{display:block;color:#bfcac2;margin-top:6px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field label{display:block;color:var(--muted);font-size:11px;margin:0 0 4px}.field input,.field select{width:100%;padding:11px;border:1px solid var(--line);border-radius:11px;background:#fff;font-size:16px}.full{grid-column:1/-1}.primary{width:100%;border:0;background:var(--green);color:#fff;padding:12px;border-radius:12px;font-weight:900}.records{margin-top:8px}.record{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid var(--line)}.record b{font-size:14px}.record span{color:var(--muted);font-size:11px}
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.badge{text-align:center;padding:14px 7px;border:1px solid var(--line);border-radius:15px;background:#fafbfa}.badge.off{opacity:.35;filter:grayscale(1)}.badge div{font-size:26px}.badge b{font-size:11px;display:block;margin-top:4px}.hidden{display:none}.empty{text-align:center;padding:24px;color:var(--muted)}
+@media(max-width:500px){.heroRow{gap:13px}.ring{width:94px;height:94px}.ring:before{width:68px;height:68px}.ring b{font-size:19px}.mini b{font-size:19px}.session{grid-template-columns:40px 1fr}.check{grid-column:2;justify-self:start}.badges{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body><main id="app"></main>
+<script>
+const start=new Date(Date.UTC(2026,9,5)), end=new Date(Date.UTC(2027,2,28));
+const plan=[
+["Endurance","5 km facile","🟢"],["Fractionné","6 km · 6×1 min","⚡"],["Endurance","5 km facile","🟢"],
+["Endurance","6 km facile","🟢"],["Fractionné","6 km · 8×1 min","⚡"],["Sortie longue","8 km facile","🌿"],
+["Endurance","6 km facile","🟢"],["Fractionné","7 km · 5×2 min","⚡"],["Sortie longue","9 km facile","🌿"],
+["Endurance","6 km facile","🟢"],["Tempo","7 km · 3 km soutenus","🔥"],["Sortie longue","10 km facile","🌿"],
+["Endurance","7 km facile","🟢"],["Fractionné","7 km · 6×2 min","⚡"],["Sortie longue","11 km facile","🌿"],
+["Endurance","7 km facile","🟢"],["Tempo","8 km · 4 km soutenus","🔥"],["Sortie longue","12 km facile","🌿"],
+["Endurance","7 km facile","🟢"],["Fractionné","8 km · 5×3 min","⚡"],["Sortie longue","13 km facile","🌿"],
+["Endurance","8 km facile","🟢"],["Tempo","8 km · 5 km soutenus","🔥"],["Sortie longue","14 km facile","🌿"],
+["Endurance","7 km facile","🟢"],["Fractionné","8 km · 4×4 min","⚡"],["Sortie longue","15 km facile","🌿"],
+["Endurance","7 km facile","🟢"],["Tempo","9 km · 6 km soutenus","🔥"],["Sortie longue","16 km facile","🌿"],
+["Endurance","6 km facile","🟢"],["Fractionné","8 km · 6×2 min","⚡"],["Sortie longue","13 km facile","🌿"],
+["Endurance","6 km facile","🟢"],["Tempo","7 km · 4 km soutenus","🔥"],["Sortie longue","10 km facile","🌿"],
+["Endurance","5 km facile","🟢"],["Fractionné léger","6 km · 4×2 min","⚡"],["Sortie longue","8 km facile","🌿"],
+["Endurance","4 km très facile","🟢"],["Rappel allure","5 km · 3×1 min","⚡"],["Sortie longue","6 km facile","🌿"],
+["Footing léger","4 km","🟢"],["Rappel allure","4 km · 3×1 min","⚡"],["Objectif","21,1 km 🏁","🏆"]
+];
+let s=JSON.parse(localStorage.getItem("run21")||'{"done":{},"runs":[]}');
+const iso=d=>d.toISOString().slice(0,10), fmt=d=>new Intl.DateTimeFormat("fr-FR",{day:"numeric",month:"short",timeZone:"UTC"}).format(d);
+function dateAt(i){let d=new Date(start);d.setUTCDate(d.getUTCDate()+i);return d}
+function save(){localStorage.setItem("run21",JSON.stringify(s))}
+function stats(){let n=Object.values(s.done).filter(Boolean).length,km=s.runs.reduce((a,r)=>a+r.km,0);return {n,km,pct:Math.min(100,Math.round(n/42*100))}}
+function home(){
+ let st=stats(),deg=Math.round(st.pct*3.6);
+ return `<section class="hero"><div class="eyebrow">ROAD TO 21.1 · MARS 2027</div><h1>Mon Semi 🏃‍♀️</h1><p>Chaque sortie te rapproche de la ligne d'arrivée.</p><div class="heroRow"><div class="ring" style="--deg:${deg}deg"><div><b>${st.pct}%</b><small>progression</small></div></div><div class="heroStats"><div class="mini"><b>${st.n}</b><span>séances faites</span></div><div class="mini"><b>${st.km.toFixed(1)}</b><span>km enregistrés</span></div><div class="mini"><b>${Math.floor(st.n/3)}</b><span>semaines complètes</span></div><div class="mini"><b>21,1</b><span>km objectif</span></div></div></div></section>
+ <div class="nav"><button class="active" data-page="home">Aujourd'hui</button><button data-page="calendar">Calendrier</button><button data-page="stats">Mes stats</button></div>
+ <div class="quote"><b>${st.n===0?"Le premier pas commence maintenant. 🌱":st.pct<50?"La régularité construit les grandes distances. 💪":"Tu es en train de devenir ta propre source de motivation. 🔥"}</b><small>Pas besoin d'être parfaite. Il suffit de continuer.</small></div>
+ ${weekCard()}<div class="card"><div class="head"><h2>🏅 Badges</h2><span class="pill">À débloquer</span></div><div class="badges" style="margin-top:12px">${badge("🌱","Premier run",st.n>=1)}${badge("🔥","10 séances",st.n>=10)}${badge("💯","50 km",st.km>=50)}${badge("🚀","100 km",st.km>=100)}${badge("🏔️","250 km",st.km>=250)}${badge("🏆","21,1 km",s.runs.some(r=>r.km>=21))}</div></div>`;
+}
+function badge(i,t,on){return `<div class="badge ${on?'':'off'}"><div>${i}</div><b>${t}</b></div>`}
+function weekCard(){
+ let today=new Date();let idx=Math.max(0,Math.floor((Date.UTC(today.getFullYear(),today.getMonth(),today.getDate())-start)/86400000));let wi=Math.floor(idx/7)*7;
+ let days="";for(let j=0;j<7;j++){let d=dateAt(wi+j),k=iso(d);if(d>end)continue;let has=plan[wi+j]&&plan[wi+j][0]!=="Repos";days+=`<div class="day ${has?'run':''} ${s.done[k]?'done':''}"><div class="dayName">${new Intl.DateTimeFormat("fr-FR",{weekday:"short",timeZone:"UTC"}).format(d).slice(0,3)}</div><div class="dayNum">${d.getUTCDate()}</div><div class="dot"></div></div>`}
+ let sessions="";for(let j=0;j<7;j++){let d=dateAt(wi+j),p=plan[wi+j];if(!p||d>end)continue;let k=iso(d),done=s.done[k];sessions+=`<div class="session ${done?'done':''}"><div class="ico">${p[2]}</div><div><h3>${p[0]}</h3><p>${p[1]} · ${fmt(d)}</p></div><button class="check" data-k="${k}">${done?'✓ Fait':'Valider'}</button></div>`}
+ return `<div class="card"><div class="head"><h2>📅 Ma semaine</h2><span class="pill">Objectif 3 sorties</span></div><div class="week">${days}</div>${sessions}</div>`;
+}
+function calendar(){
+ let html=`<div class="nav"><button data-page="home">← Retour</button></div><div class="card"><div class="head"><h2>🗓 Mon calendrier</h2><span class="pill">${stats().pct}%</span></div><p style="color:var(--muted);font-size:12px">Les jours verts sont tes séances validées.</p>`;
+ let d=new Date(Date.UTC(2026,9,1));while(d<=end){let m=d.getUTCMonth(),y=d.getUTCFullYear(),title=new Intl.DateTimeFormat("fr-FR",{month:"long",year:"numeric",timeZone:"UTC"}).format(d);html+=`<h3 style="margin:18px 0 8px">${title[0].toUpperCase()+title.slice(1)}</h3><div class="week">`;let first=new Date(Date.UTC(y,m,1)),b=(first.getUTCDay()+6)%7;for(let i=0;i<b;i++)html+='<div></div>';while(d.getUTCMonth()===m&&d<=end){let k=iso(d),has=!!s.done[k];html+=`<div class="day ${has?'done':''}"><div class="dayNum">${d.getUTCDate()}</div><div class="dot">${has?'✓':''}</div></div>`;d.setUTCDate(d.getUTCDate()+1)}html+='</div>'}return html+'</div>'}
+function statsPage(){
+ let km=s.runs.reduce((a,r)=>a+r.km,0);return `<div class="nav"><button data-page="home">← Retour</button></div><div class="card"><h2>✍️ Enregistrer un run</h2><form id="runform" style="margin-top:12px"><div class="field"><label>Date</label><input id="rdate" type="date" required></div><div class="field"><label>Distance (km)</label><input id="rkm" type="number" min=".1" step=".01" placeholder="5.2" required></div><div class="field"><label>Temps (min)</label><input id="rtime" type="number" min=".1" step=".1" placeholder="31.5" required></div><div class="field"><label>Ressenti /10</label><input id="rfeel" type="number" min="1" max="10"></div><div class="field full"><label>Petite note</label><input id="rnote" type="text" placeholder="Bonnes sensations aujourd'hui 💚"></div><button class="primary full">Enregistrer le run ✓</button></form></div><div class="card"><div class="head"><h2>📈 Historique</h2><span class="pill">${km.toFixed(1)} km</span></div><div class="records">${s.runs.length?s.runs.slice().reverse().map(r=>`<div class="record"><div><b>${r.km.toFixed(2)} km · ${r.time} min</b><br><span>${r.date}${r.feel?' · ressenti '+r.feel+'/10':''}</span></div><span>${r.note||''}</span></div>`).join(""):'<div class="empty">Tes runs apparaîtront ici 🏃‍♀️</div>'}</div></div>`;
+}
+function render(page="home"){app.innerHTML=page==="home"?home():page==="calendar"?calendar():statsPage();document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>render(b.dataset.page));document.querySelectorAll(".check").forEach(b=>b.onclick=()=>{s.done[b.dataset.k]=!s.done[b.dataset.k];save();render("home")});let f=document.getElementById("runform");if(f){f.onsubmit=e=>{e.preventDefault();let r={date:rdate.value,km:Number(rkm.value),time:Number(rtime.value),feel:Number(rfeel.value)||null,note:rnote.value};s.runs.push(r);s.done[r.date]=true;save();render("home")}}}
+render();
+</script></body></html>
